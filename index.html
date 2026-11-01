@@ -1,0 +1,624 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="応援で集客勉強会の内容を、実際の行動につなげるWebワークシート試作版です。">
+  <title>応援で集客勉強会｜実践アクションガイド</title>
+  <style>
+    :root {
+      --ink: #273238;
+      --muted: #66747b;
+      --brand: #e9663c;
+      --brand-dark: #bd4524;
+      --brand-soft: #fff0e9;
+      --blue-soft: #edf7fb;
+      --blue-line: #a9d4e5;
+      --green: #217a55;
+      --green-soft: #eaf7f0;
+      --line: #d9e0e4;
+      --paper: #ffffff;
+      --canvas: #fffaf7;
+      --shadow: 0 14px 34px rgba(61, 44, 34, .09);
+      --radius: 18px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 8% 2%, rgba(233,102,60,.12), transparent 25rem),
+        var(--canvas);
+      font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", Meiryo, sans-serif;
+      line-height: 1.7;
+      font-size: 16px;
+    }
+    button, input, textarea { font: inherit; }
+    a { color: var(--brand-dark); }
+    .shell { width: min(920px, calc(100% - 28px)); margin: 0 auto; }
+
+    .hero { padding: 46px 0 24px; }
+    .eyebrow {
+      margin: 0 0 8px;
+      color: var(--brand-dark);
+      font-weight: 800;
+      letter-spacing: .05em;
+    }
+    h1 { margin: 0; font-size: clamp(2rem, 7vw, 3.55rem); line-height: 1.15; letter-spacing: -.035em; }
+    .lead { margin: 16px 0 0; max-width: 730px; font-size: 1.04rem; }
+    .assist-note {
+      margin-top: 20px;
+      padding: 15px 17px;
+      border: 1px solid #f0c7b8;
+      border-radius: 14px;
+      background: var(--brand-soft);
+    }
+    .assist-note strong { display: block; margin-bottom: 2px; }
+
+    .status-wrap {
+      position: sticky;
+      z-index: 20;
+      top: 0;
+      padding: 10px 0;
+      background: color-mix(in srgb, var(--canvas) 88%, transparent);
+      backdrop-filter: blur(14px);
+    }
+    .status-card {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 12px 18px;
+      align-items: center;
+      padding: 12px 16px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: rgba(255,255,255,.95);
+      box-shadow: 0 8px 22px rgba(61,44,34,.06);
+    }
+    .progress-label { font-weight: 800; }
+    .save-status { color: var(--green); font-weight: 750; white-space: nowrap; }
+    .progress-track {
+      grid-column: 1 / -1;
+      height: 9px;
+      overflow: hidden;
+      border-radius: 99px;
+      background: #edf0f2;
+    }
+    .progress-bar { width: 0; height: 100%; border-radius: inherit; background: linear-gradient(90deg, var(--brand), #f6a15f); transition: width .25s ease; }
+    .restore-message { display: none; grid-column: 1 / -1; color: var(--green); font-size: .92rem; }
+    .restore-message.show { display: block; }
+
+    .privacy {
+      margin: 10px 0 24px;
+      padding: 12px 15px;
+      border-left: 4px solid #4a9abb;
+      border-radius: 0 10px 10px 0;
+      background: var(--blue-soft);
+      font-size: .92rem;
+    }
+
+    .step-nav {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      margin: 0 0 24px;
+    }
+    .step-nav a {
+      min-height: 52px;
+      display: grid;
+      place-items: center;
+      padding: 8px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: var(--paper);
+      color: var(--ink);
+      text-align: center;
+      text-decoration: none;
+      font-weight: 750;
+      font-size: .88rem;
+    }
+    .step-nav a:hover, .step-nav a:focus-visible { border-color: var(--brand); outline: none; box-shadow: 0 0 0 3px rgba(233,102,60,.15); }
+
+    main { padding-bottom: 70px; }
+    .step {
+      scroll-margin-top: 105px;
+      margin: 0 0 26px;
+      padding: clamp(20px, 5vw, 36px);
+      border: 1px solid rgba(217,224,228,.85);
+      border-radius: var(--radius);
+      background: var(--paper);
+      box-shadow: var(--shadow);
+    }
+    .step-kicker { margin: 0; color: var(--brand-dark); font-weight: 850; letter-spacing: .05em; }
+    h2 { margin: 2px 0 8px; font-size: clamp(1.45rem, 4vw, 2.1rem); line-height: 1.35; }
+    h3 { margin: 28px 0 10px; font-size: 1.18rem; line-height: 1.45; }
+    .section-intro { margin: 0 0 20px; }
+
+    .field { margin: 0 0 18px; }
+    label, .label { display: block; margin-bottom: 6px; font-weight: 800; }
+    .hint { display: block; margin-top: 5px; color: var(--muted); font-size: .87rem; }
+    input[type="text"], input[type="url"], textarea {
+      width: 100%;
+      min-height: 50px;
+      padding: 13px 14px;
+      border: 1.5px solid #b9c5ca;
+      border-radius: 11px;
+      color: var(--ink);
+      background: #fff;
+      transition: border-color .15s ease, box-shadow .15s ease;
+    }
+    textarea { min-height: 110px; resize: vertical; }
+    input:focus, textarea:focus { border-color: #2884a9; outline: none; box-shadow: 0 0 0 4px rgba(40,132,169,.14); }
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+
+    .example {
+      margin: 13px 0 18px;
+      border: 1px solid #efc9ba;
+      border-radius: 12px;
+      background: var(--brand-soft);
+      overflow: hidden;
+    }
+    .example summary { min-height: 48px; padding: 11px 14px; cursor: pointer; font-weight: 850; }
+    .example summary::marker { color: var(--brand-dark); }
+    .example-body { padding: 0 14px 14px; white-space: pre-line; }
+    .example-tag { display: inline-block; margin-right: 6px; padding: 1px 8px; border-radius: 99px; background: #fff; color: var(--brand-dark); font-size: .78rem; }
+    .user-entry {
+      padding: 14px;
+      border: 1px solid var(--blue-line);
+      border-radius: 13px;
+      background: var(--blue-soft);
+    }
+    .user-entry .label::before { content: "Web版の補助｜"; color: #26799a; }
+
+    .person-group { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    .person-card {
+      padding: 15px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: #fbfcfc;
+    }
+    .person-number { display: inline-grid; place-items: center; width: 28px; height: 28px; margin-bottom: 8px; border-radius: 50%; background: var(--brand); color: #fff; font-weight: 850; }
+    .person-card textarea { min-height: 86px; }
+
+    .method-list { display: grid; gap: 12px; }
+    .method-card { padding: 17px; border: 1px solid var(--line); border-radius: 15px; background: #fbfcfc; }
+    .method-title { display: flex; gap: 11px; align-items: flex-start; }
+    .method-title input { margin-top: 5px; }
+    .method-title strong { font-size: 1.04rem; }
+    .method-title span { display: block; color: var(--muted); font-size: .9rem; font-weight: 500; }
+    .method-card .user-entry { margin-top: 12px; }
+
+    .checks {
+      display: grid;
+      gap: 9px;
+      margin-top: 24px;
+      padding: 16px;
+      border-radius: 14px;
+      background: var(--green-soft);
+    }
+    .checks-title { font-weight: 850; color: var(--green); }
+    .check-row {
+      display: grid;
+      grid-template-columns: 28px 1fr;
+      gap: 9px;
+      align-items: start;
+      min-height: 46px;
+      padding: 8px 9px;
+      border-radius: 9px;
+      cursor: pointer;
+    }
+    .check-row:hover { background: rgba(255,255,255,.72); }
+    input[type="checkbox"], input[type="radio"] { width: 22px; height: 22px; accent-color: var(--brand); cursor: pointer; }
+
+    .caution { margin: 13px 0 0; padding: 13px 15px; border: 1px solid #e1b85c; border-radius: 12px; background: #fff8df; font-size: .92rem; }
+    .closing { margin-top: 24px; font-weight: 800; }
+    .source-note { margin: 34px 0 18px; color: var(--muted); font-size: .88rem; }
+    .reset-zone { text-align: center; }
+    .reset-button { min-height: 46px; padding: 8px 16px; border: 1px solid #c3cdd2; border-radius: 10px; background: #fff; color: #6d3730; cursor: pointer; }
+    .reset-button:hover, .reset-button:focus-visible { border-color: #b55745; outline: none; box-shadow: 0 0 0 3px rgba(181,87,69,.12); }
+
+    dialog { width: min(420px, calc(100% - 30px)); padding: 22px; border: 0; border-radius: 16px; box-shadow: 0 24px 70px rgba(0,0,0,.28); }
+    dialog::backdrop { background: rgba(27,33,36,.48); }
+    dialog h2 { font-size: 1.35rem; }
+    .dialog-actions { display: flex; justify-content: flex-end; gap: 10px; margin-top: 20px; }
+    .button { min-height: 46px; padding: 9px 15px; border-radius: 10px; border: 1px solid var(--line); cursor: pointer; font-weight: 750; }
+    .button-secondary { background: #fff; }
+    .button-danger { border-color: #b33d2f; background: #b33d2f; color: #fff; }
+
+    .noscript { margin: 16px; padding: 16px; border: 2px solid #b33d2f; background: #fff; }
+
+    @media (max-width: 700px) {
+      .hero { padding-top: 28px; }
+      .status-card { grid-template-columns: 1fr; gap: 5px; }
+      .save-status { justify-self: start; }
+      .progress-track, .restore-message { grid-column: 1; }
+      .step-nav { grid-template-columns: 1fr 1fr; }
+      .grid-2, .person-group { grid-template-columns: 1fr; }
+      .person-card { display: grid; grid-template-columns: 34px 1fr; column-gap: 9px; }
+      .person-card .field { grid-column: 2; }
+      .step { padding: 21px 16px; border-radius: 15px; }
+      .dialog-actions { flex-direction: column-reverse; }
+      .button { width: 100%; }
+    }
+
+    @media print {
+      .status-wrap, .step-nav, .reset-zone, dialog { display: none !important; }
+      body { background: #fff; }
+      .step { box-shadow: none; break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+  <noscript><div class="noscript">このワークシートにはJavaScriptが必要です。ブラウザの設定を確認してください。</div></noscript>
+
+  <header class="hero shell">
+    <p class="eyebrow">応援で集客勉強会</p>
+    <h1>今日からできる！<br>実践アクションガイド</h1>
+    <p class="lead">勉強会で学んだ「応援し合いながらイベントを届ける方法」を、実際に試してみるためのガイドです。参加した方も、アーカイブを見た方も、できるところから一つずつ進めてみましょう。</p>
+    <div class="assist-note">
+      <strong>Web版の補助案内</strong>
+      本文・文章例・チェック項目は元のガイドに基づき、入力欄や進捗・保存機能はWeb版の補助機能です。
+      全部を一度に行わなくても大丈夫です。できた項目にチェックを入れてください。入力内容は、この端末・このブラウザ内に自動保存されます。
+    </div>
+  </header>
+
+  <div class="status-wrap">
+    <div class="shell status-card" aria-live="polite">
+      <div class="progress-label"><span id="completed-count">0</span> / 11 項目できました</div>
+      <div class="save-status" id="save-status">入力を待っています</div>
+      <div class="progress-track" aria-hidden="true"><div class="progress-bar" id="progress-bar"></div></div>
+      <div class="restore-message" id="restore-message"></div>
+    </div>
+  </div>
+
+  <main class="shell">
+    <div class="privacy">
+      <strong>保存について：</strong>試作版では、入力内容を運営へ送信しません。同じ端末・同じブラウザでのみ続きから再開できます。別端末への引き継ぎや、ブラウザデータ削除後の復元はできません。個人情報・機密情報は入力せず、お名前は「自分に分かる呼び名」でも構いません。
+    </div>
+
+    <nav class="step-nav" aria-label="4つのステップ">
+      <a href="#step1">STEP 1<br>魅力を考える</a>
+      <a href="#step2">STEP 2<br>応援を考える</a>
+      <a href="#step3">STEP 3<br>紹介する</a>
+      <a href="#step4">STEP 4<br>感謝と次の一歩</a>
+    </nav>
+
+    <form id="worksheet" novalidate>
+      <section class="step" id="step1">
+        <p class="step-kicker">STEP 1</p>
+        <h2>紹介したいイベントの魅力を考えよう</h2>
+        <p class="section-intro">まずは、紹介したいイベントについて、自分の言葉で考えてみましょう。</p>
+
+        <h3>① イベントの情報を確認する</h3>
+        <div class="grid-2">
+          <div class="field">
+            <label for="event-name">イベント名</label>
+            <input id="event-name" name="event_name" type="text" autocomplete="off">
+          </div>
+          <div class="field">
+            <label for="event-url">詳細・申込みページ</label>
+            <input id="event-url" name="event_url" type="url" inputmode="url" placeholder="https://">
+          </div>
+        </div>
+
+        <h3>② 次の3つを考えてみる</h3>
+        <div class="field">
+          <label for="help-person">どんなことで困っている人に役立ちそう？</label>
+          <textarea id="help-person" name="help_person"></textarea>
+        </div>
+        <div class="field">
+          <label for="learn-person">どんなことを知りたい人に合いそう？</label>
+          <textarea id="learn-person" name="learn_person"></textarea>
+        </div>
+        <div class="field">
+          <label for="learning">参加すると、どんな学びや気づきがありそう？</label>
+          <textarea id="learning" name="learning"></textarea>
+        </div>
+        <p>最初は箇条書きで大丈夫。イベントの内容を詳しく知らなくても、自分なりに考えてみることが大切です。</p>
+
+        <h3>③ 短い紹介文を作ってみる</h3>
+        <details class="example" open>
+          <summary><span class="example-tag">原文</span>文章例を見る</summary>
+          <div class="example-body">「〇〇に興味がある方に、こんなイベントがあります。△△について学べる内容なので、気になる方は詳細を見てみてください！」</div>
+        </details>
+        <p>※実際に紹介するときは、イベントの案内で確認できる内容を使いましょう。</p>
+        <div class="user-entry field">
+          <label class="label" for="short-intro">自分の短い紹介文</label>
+          <textarea id="short-intro" name="short_intro" placeholder="文章例を参考に、自分の言葉で書いてみましょう"></textarea>
+        </div>
+
+        <div class="checks" aria-label="STEP 1 できたらチェック">
+          <div class="checks-title">できたらチェック</div>
+          <label class="check-row"><input type="checkbox" name="check_01"><span>イベントの情報を確認した</span></label>
+          <label class="check-row"><input type="checkbox" name="check_02"><span>どんな人に届けたいか考えた</span></label>
+          <label class="check-row"><input type="checkbox" name="check_03"><span>短い紹介文を作った</span></label>
+        </div>
+      </section>
+
+      <section class="step" id="step2">
+        <p class="step-kicker">STEP 2</p>
+        <h2>応援する人・応援をお願いする人を考えよう</h2>
+        <p class="section-intro">勉強会の大切なポイントは、自分も誰かを応援し、周りの人にも応援をお願いしてみることです。</p>
+
+        <h3>① 自分が応援したい人を3人書いてみよう</h3>
+        <div class="person-group">
+          <div class="person-card">
+            <span class="person-number">1</span>
+            <div class="field"><label for="support-name-1">お名前</label><input id="support-name-1" name="support_name_1" type="text"><span class="hint">自分に分かる呼び名でOK</span></div>
+            <div class="field"><label for="support-action-1">どんな応援ができそう？</label><textarea id="support-action-1" name="support_action_1"></textarea></div>
+          </div>
+          <div class="person-card">
+            <span class="person-number">2</span>
+            <div class="field"><label for="support-name-2">お名前</label><input id="support-name-2" name="support_name_2" type="text"><span class="hint">自分に分かる呼び名でOK</span></div>
+            <div class="field"><label for="support-action-2">どんな応援ができそう？</label><textarea id="support-action-2" name="support_action_2"></textarea></div>
+          </div>
+          <div class="person-card">
+            <span class="person-number">3</span>
+            <div class="field"><label for="support-name-3">お名前</label><input id="support-name-3" name="support_name_3" type="text"><span class="hint">自分に分かる呼び名でOK</span></div>
+            <div class="field"><label for="support-action-3">どんな応援ができそう？</label><textarea id="support-action-3" name="support_action_3"></textarea></div>
+          </div>
+        </div>
+        <p>応援の例：SNSで紹介する、知り合いに伝える、直接会ったときに話す。</p>
+
+        <h3>② 応援をお願いしたい人も3人書いてみよう</h3>
+        <div class="person-group">
+          <div class="person-card">
+            <span class="person-number">1</span>
+            <div class="field"><label for="ask-name-1">お名前</label><input id="ask-name-1" name="ask_name_1" type="text"><span class="hint">自分に分かる呼び名でOK</span></div>
+            <div class="field"><label for="ask-action-1">どんなお願いができそう？</label><textarea id="ask-action-1" name="ask_action_1"></textarea></div>
+          </div>
+          <div class="person-card">
+            <span class="person-number">2</span>
+            <div class="field"><label for="ask-name-2">お名前</label><input id="ask-name-2" name="ask_name_2" type="text"><span class="hint">自分に分かる呼び名でOK</span></div>
+            <div class="field"><label for="ask-action-2">どんなお願いができそう？</label><textarea id="ask-action-2" name="ask_action_2"></textarea></div>
+          </div>
+          <div class="person-card">
+            <span class="person-number">3</span>
+            <div class="field"><label for="ask-name-3">お名前</label><input id="ask-name-3" name="ask_name_3" type="text"><span class="hint">自分に分かる呼び名でOK</span></div>
+            <div class="field"><label for="ask-action-3">どんなお願いができそう？</label><textarea id="ask-action-3" name="ask_action_3"></textarea></div>
+          </div>
+        </div>
+        <p>一人に紹介するだけでなく、その人からさらに何人かへ広めてもらう方法も考えてみましょう。</p>
+
+        <h3>③ 紹介しやすい文章を用意しよう</h3>
+        <p>応援をお願いするときは、相手がそのまま使える紹介文と案内先を渡すと、協力してもらいやすくなります。</p>
+        <details class="example" open>
+          <summary><span class="example-tag">原文</span>文章例を見る</summary>
+          <div class="example-body">「〇〇さん、こんにちは！
+今、こんなイベントを紹介しています。
+［イベントの短い紹介文］
+もしよかったら、興味がありそうな方へのご紹介やシェアをお願いできたらうれしいです。
+そのまま使える文章と案内ページもお送りしますね！」</div>
+        </details>
+        <div class="user-entry field">
+          <label class="label" for="share-request">自分の紹介・シェア依頼文</label>
+          <textarea id="share-request" name="share_request"></textarea>
+        </div>
+
+        <div class="checks" aria-label="STEP 2 できたらチェック">
+          <div class="checks-title">できたらチェック</div>
+          <label class="check-row"><input type="checkbox" name="check_04"><span>応援したい人を考えた</span></label>
+          <label class="check-row"><input type="checkbox" name="check_05"><span>応援をお願いしたい人を考えた</span></label>
+          <label class="check-row"><input type="checkbox" name="check_06"><span>紹介してもらいやすい文章を用意した</span></label>
+        </div>
+      </section>
+
+      <section class="step" id="step3">
+        <p class="step-kicker">STEP 3</p>
+        <h2>自分に合う方法を選んで、紹介してみよう</h2>
+        <p class="section-intro">できそうな方法を一つ選んで、実際に行動してみましょう。</p>
+
+        <div class="method-list">
+          <article class="method-card">
+            <label class="method-title"><input type="radio" name="method_choice" value="知り合いに連絡する"><span><strong>① 知り合いに連絡する</strong><span>興味がありそうな人へ個別にメッセージを送る</span></span></label>
+            <details class="example"><summary><span class="example-tag">原文</span>文章例を見る</summary><div class="example-body">「〇〇さん、こんにちは！ 以前△△のお話をされていたので、こんなイベントが合いそうだなと思ってご連絡しました。興味があれば、こちらを見てみてくださいね。［案内ページ］」</div></details>
+            <div class="user-entry field"><label class="label" for="method-text-1">自分の言葉に直す</label><textarea id="method-text-1" name="method_text_1"></textarea></div>
+          </article>
+
+          <article class="method-card">
+            <label class="method-title"><input type="radio" name="method_choice" value="SNSで紹介する"><span><strong>② SNSで紹介する</strong><span>Instagramのストーリーズなどで紹介する</span></span></label>
+            <details class="example"><summary><span class="example-tag">原文</span>文章例を見る</summary><div class="example-body">「〇〇に興味がある方へ
+こんなイベントがあります！
+△△について学べる内容なので、気になる方はチェックしてみてください。
+［案内ページへのリンク］」</div></details>
+            <div class="user-entry field"><label class="label" for="method-text-2">自分の言葉に直す</label><textarea id="method-text-2" name="method_text_2"></textarea></div>
+          </article>
+
+          <article class="method-card">
+            <label class="method-title"><input type="radio" name="method_choice" value="コミュニティで紹介する"><span><strong>③ コミュニティで紹介する</strong><span>管理者に確認してから、グループ内で紹介する</span></span></label>
+            <details class="example"><summary><span class="example-tag">原文</span>文章例を見る</summary><div class="example-body">「〇〇さん、こんにちは！ メンバーの方にも興味を持っていただけそうなイベントがあるのですが、こちらのグループで紹介しても大丈夫でしょうか？」</div></details>
+            <div class="user-entry field"><label class="label" for="method-text-3">自分の言葉に直す</label><textarea id="method-text-3" name="method_text_3"></textarea></div>
+          </article>
+
+          <article class="method-card">
+            <label class="method-title"><input type="radio" name="method_choice" value="紹介やシェアをお願いする"><span><strong>④ 紹介やシェアをお願いする</strong><span>周りの人に、紹介文と一緒に協力をお願いする</span></span></label>
+            <details class="example"><summary><span class="example-tag">原文</span>文章例を見る</summary><div class="example-body">「〇〇さん、今こんなイベントを紹介しています。もし内容に共感してもらえたら、興味がありそうな方へのご紹介やシェアをお願いできたらうれしいです。そのまま使える文章も用意しています！」</div></details>
+            <div class="user-entry field"><label class="label" for="method-text-4">自分の言葉に直す</label><textarea id="method-text-4" name="method_text_4"></textarea></div>
+          </article>
+
+          <article class="method-card">
+            <label class="method-title"><input type="radio" name="method_choice" value="登壇者のフォロワーにDMする"><span><strong>⑤ 登壇者のフォロワーにDMする</strong><span>内容に関心がありそうな方へ、相手に配慮して個別に案内する</span></span></label>
+            <details class="example" open><summary><span class="example-tag">原文</span>文章例を見る</summary><div class="example-body">「突然のご連絡、失礼します。
+〇〇さんの発信に関連して、△△に関心のある方に合いそうなイベントがあり、ご案内しました。
+［イベントの短い紹介文］
+もしご興味があれば、こちらから詳細をご覧いただけます。［案内ページ］
+ご関心がなければ返信は不要です。突然のご案内、失礼しました。」</div></details>
+            <div class="caution"><strong>原文の注意：</strong>相手との接点を確認し、SNSのルールを守って送りましょう。登壇者や運営の代理だと誤解される書き方や、一斉送信は避けます。</div>
+            <div class="user-entry field"><label class="label" for="method-text-5">自分の言葉に直す</label><textarea id="method-text-5" name="method_text_5"></textarea></div>
+          </article>
+        </div>
+
+        <div class="checks" aria-label="STEP 3 できたらチェック">
+          <div class="checks-title">できたらチェック</div>
+          <label class="check-row"><input type="checkbox" name="check_07"><span>取り組む方法を一つ選んだ</span></label>
+          <label class="check-row"><input type="checkbox" name="check_08"><span>自分の言葉に直して紹介した</span></label>
+        </div>
+      </section>
+
+      <section class="step" id="step4">
+        <p class="step-kicker">STEP 4</p>
+        <h2>応援への感謝を伝え、次の一歩を決めよう</h2>
+
+        <h3>① 今日やったことを書いてみよう</h3>
+        <div class="field"><label for="action-who">誰に・どこで紹介した？</label><textarea id="action-who" name="action_who"></textarea></div>
+        <div class="field"><label for="action-what">何をした？</label><textarea id="action-what" name="action_what"></textarea></div>
+        <div class="field"><label for="action-response">どんな反応があった？</label><textarea id="action-response" name="action_response"></textarea></div>
+
+        <h3>② 応援してくれた人にお礼を伝えよう</h3>
+        <details class="example" open><summary><span class="example-tag">原文</span>文章例を見る</summary><div class="example-body">「〇〇さん、紹介してくださってありがとうございました！ 応援してもらえて、とてもうれしかったです。私にも何かお手伝いできることがあれば、ぜひ声をかけてくださいね！」</div></details>
+        <div class="user-entry field"><label class="label" for="thanks-text">自分のお礼の文章</label><textarea id="thanks-text" name="thanks_text"></textarea></div>
+
+        <h3>③ 次にできることを一つ決めよう</h3>
+        <div class="field"><label for="next-action">私が次にやってみること</label><textarea id="next-action" name="next_action"></textarea></div>
+
+        <div class="checks" aria-label="STEP 4 できたらチェック">
+          <div class="checks-title">できたらチェック</div>
+          <label class="check-row"><input type="checkbox" name="check_09"><span>今日、一つ行動した</span></label>
+          <label class="check-row"><input type="checkbox" name="check_10"><span>応援してくれた人に感謝を伝えた</span></label>
+          <label class="check-row"><input type="checkbox" name="check_11"><span>次にすることを決めた</span></label>
+        </div>
+        <p class="closing">一人で頑張る集客から、誰かを応援し、応援してもらう集客へ。まずは一つ、行動してみましょう。</p>
+      </section>
+    </form>
+
+    <p class="source-note">※この資料は、勉強会で説明された内容を中心に、実践しやすい順番に整理した提案用の叩き台です。文章例やチェック項目などには、実践を助けるために追加したものも含まれています。</p>
+    <div class="reset-zone">
+      <button class="reset-button" type="button" id="reset-open">入力内容をすべて消す</button>
+    </div>
+  </main>
+
+  <dialog id="reset-dialog" aria-labelledby="reset-title">
+    <h2 id="reset-title">入力内容をすべて消しますか？</h2>
+    <p>この操作は元に戻せません。誤操作を防ぐため、もう一度確認しています。</p>
+    <div class="dialog-actions">
+      <button type="button" class="button button-secondary" id="reset-cancel">キャンセル</button>
+      <button type="button" class="button button-danger" id="reset-confirm">すべて消す</button>
+    </div>
+  </dialog>
+
+  <script>
+    (() => {
+      'use strict';
+      const STORAGE_KEY = 'ouen-shukyaku-worksheet:v1';
+      const DATA_VERSION = 1;
+      const form = document.getElementById('worksheet');
+      const saveStatus = document.getElementById('save-status');
+      const completedCount = document.getElementById('completed-count');
+      const progressBar = document.getElementById('progress-bar');
+      const restoreMessage = document.getElementById('restore-message');
+      const resetDialog = document.getElementById('reset-dialog');
+      let saveTimer = null;
+      let storageAvailable = true;
+
+      function getValues() {
+        const values = {};
+        form.querySelectorAll('input, textarea').forEach((element) => {
+          if (!element.name) return;
+          if (element.type === 'checkbox') {
+            values[element.name] = element.checked;
+          } else if (element.type === 'radio') {
+            if (element.checked) values[element.name] = element.value;
+          } else {
+            values[element.name] = element.value;
+          }
+        });
+        return values;
+      }
+
+      function updateProgress() {
+        const checks = [...form.querySelectorAll('input[type="checkbox"][name^="check_"]')];
+        const completed = checks.filter((checkbox) => checkbox.checked).length;
+        completedCount.textContent = String(completed);
+        progressBar.style.width = `${(completed / 11) * 100}%`;
+      }
+
+      function formatTime(iso) {
+        try {
+          return new Intl.DateTimeFormat('ja-JP', { hour: '2-digit', minute: '2-digit' }).format(new Date(iso));
+        } catch (_) {
+          return '';
+        }
+      }
+
+      function saveNow() {
+        updateProgress();
+        if (!storageAvailable) return;
+        const payload = {
+          version: DATA_VERSION,
+          updatedAt: new Date().toISOString(),
+          values: getValues()
+        };
+        try {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(payload));
+          saveStatus.textContent = `保存済み ${formatTime(payload.updatedAt)}`;
+        } catch (_) {
+          storageAvailable = false;
+          saveStatus.textContent = 'このブラウザでは保存できません';
+          saveStatus.style.color = '#b33d2f';
+        }
+      }
+
+      function queueSave() {
+        saveStatus.textContent = '保存中…';
+        window.clearTimeout(saveTimer);
+        saveTimer = window.setTimeout(saveNow, 260);
+      }
+
+      function applyValues(values) {
+        form.querySelectorAll('input, textarea').forEach((element) => {
+          if (!element.name || !(element.name in values)) return;
+          if (element.type === 'checkbox') {
+            element.checked = Boolean(values[element.name]);
+          } else if (element.type === 'radio') {
+            element.checked = values[element.name] === element.value;
+          } else {
+            element.value = String(values[element.name] ?? '');
+          }
+        });
+      }
+
+      function restore() {
+        try {
+          const raw = localStorage.getItem(STORAGE_KEY);
+          if (!raw) {
+            saveStatus.textContent = '入力すると自動保存されます';
+            updateProgress();
+            return;
+          }
+          const payload = JSON.parse(raw);
+          if (!payload || payload.version !== DATA_VERSION || typeof payload.values !== 'object') throw new Error('invalid');
+          applyValues(payload.values);
+          updateProgress();
+          saveStatus.textContent = `保存済み ${formatTime(payload.updatedAt)}`;
+          restoreMessage.textContent = '前回保存した内容を復元し、続きから再開しました。';
+          restoreMessage.classList.add('show');
+        } catch (_) {
+          saveStatus.textContent = '保存データを読み込めませんでした';
+          saveStatus.style.color = '#b33d2f';
+          updateProgress();
+        }
+      }
+
+      form.addEventListener('input', queueSave);
+      form.addEventListener('change', queueSave);
+      window.addEventListener('pagehide', saveNow);
+
+      document.getElementById('reset-open').addEventListener('click', () => resetDialog.showModal());
+      document.getElementById('reset-cancel').addEventListener('click', () => resetDialog.close());
+      document.getElementById('reset-confirm').addEventListener('click', () => {
+        form.reset();
+        try { localStorage.removeItem(STORAGE_KEY); } catch (_) {}
+        restoreMessage.classList.remove('show');
+        saveStatus.style.color = '';
+        saveStatus.textContent = '入力内容を消しました';
+        updateProgress();
+        resetDialog.close();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+
+      restore();
+    })();
+  </script>
+</body>
+</html>
