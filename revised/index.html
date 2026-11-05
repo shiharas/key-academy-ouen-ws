@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="自分に合う応援方法を一つ選び、今日から実践するためのアクションガイドです。">
+  <title>応援で集客勉強会｜今日からできる！実践アクションガイド</title>
+  <style>
+    :root{--ink:#28333a;--muted:#66747b;--brand:#e5673f;--brand-dark:#b74425;--soft:#fff0e9;--blue:#edf7fb;--blue-line:#a8d2e3;--green:#247854;--green-soft:#eaf7f0;--line:#d8e0e4;--paper:#fff;--canvas:#fffaf7;--shadow:0 14px 34px rgba(61,44,34,.09);--radius:18px}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;color:var(--ink);background:radial-gradient(circle at 8% 2%,rgba(229,103,63,.12),transparent 25rem),var(--canvas);font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic",Meiryo,sans-serif;line-height:1.7;font-size:16px}button,input,textarea{font:inherit}.shell{width:min(900px,calc(100% - 28px));margin:auto}
+    .hero{padding:42px 0 22px}.eyebrow{margin:0;color:var(--brand-dark);font-weight:850;letter-spacing:.04em}h1{margin:4px 0 0;font-size:clamp(2rem,7vw,3.4rem);line-height:1.16;letter-spacing:-.035em}.lead{max-width:730px;margin:15px 0 0}.notice{margin-top:18px;padding:14px 16px;border:1px solid #efc8b9;border-radius:14px;background:var(--soft)}
+    .status-wrap{position:sticky;z-index:20;top:0;padding:9px 0;background:color-mix(in srgb,var(--canvas) 88%,transparent);backdrop-filter:blur(12px)}.status{display:grid;grid-template-columns:1fr auto;gap:10px 16px;align-items:center;padding:11px 15px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.96);box-shadow:0 8px 22px rgba(61,44,34,.06)}.progress{font-weight:850}.save{color:var(--green);font-weight:800;white-space:nowrap}.track{grid-column:1/-1;height:8px;border-radius:99px;background:#edf0f2;overflow:hidden}.bar{height:100%;width:0;background:linear-gradient(90deg,var(--brand),#f4a060);transition:width .2s}.restore{display:none;grid-column:1/-1;color:var(--green);font-size:.9rem}.restore.show{display:block}
+    main{padding:12px 0 70px}.privacy{margin-bottom:20px;padding:12px 15px;border-left:4px solid #4296b8;border-radius:0 10px 10px 0;background:var(--blue);font-size:.92rem}.stepper{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:20px}.step-chip{padding:9px 7px;border:1px solid var(--line);border-radius:11px;background:#fff;color:var(--muted);text-align:center;font-size:.84rem;font-weight:800}.step-chip.active{border-color:var(--brand);background:var(--soft);color:var(--brand-dark)}
+    .screen{display:none;padding:clamp(20px,5vw,36px);border:1px solid var(--line);border-radius:var(--radius);background:var(--paper);box-shadow:var(--shadow)}.screen.active{display:block}.kicker{margin:0;color:var(--brand-dark);font-weight:850;letter-spacing:.05em}h2{margin:2px 0 8px;font-size:clamp(1.45rem,4vw,2.1rem);line-height:1.35}h3{margin:27px 0 10px;font-size:1.16rem}.intro{margin:0 0 20px}.field{margin:0 0 17px}label,.label{display:block;margin-bottom:6px;font-weight:800}input[type=text],input[type=url],textarea{width:100%;min-height:50px;padding:13px 14px;border:1.5px solid #b9c5ca;border-radius:11px;color:var(--ink);background:#fff}textarea{min-height:108px;resize:vertical}input:focus,textarea:focus{border-color:#2784aa;outline:none;box-shadow:0 0 0 4px rgba(39,132,170,.14)}.hint{display:block;margin-top:5px;color:var(--muted);font-size:.87rem}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    .choice-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.choice{display:grid;grid-template-columns:30px 1fr;gap:10px;min-height:150px;margin:0;padding:16px;border:1.5px solid var(--line);border-radius:15px;background:#fbfcfc;cursor:pointer}.choice:hover{border-color:var(--brand)}.choice:has(input:checked){border-color:var(--brand);background:var(--soft);box-shadow:0 0 0 3px rgba(229,103,63,.14)}.choice input{margin-top:4px}.choice strong{display:block;font-size:1.05rem;color:var(--ink)}.choice em{display:block;margin:4px 0;color:var(--brand-dark);font-style:normal;font-weight:800}.choice span span{display:block;color:var(--muted);font-size:.9rem;font-weight:500}.selection-note{margin-top:15px;padding:13px;border:1px solid var(--blue-line);border-radius:12px;background:var(--blue)}
+    .method-head{margin:-4px 0 18px;padding:14px;border-radius:13px;background:var(--soft)}.method-head strong{display:block;color:var(--brand-dark);font-size:1.08rem}.example{margin:12px 0 18px;border:1px solid #efc7b8;border-radius:12px;background:var(--soft);overflow:hidden}.example summary{min-height:48px;padding:11px 14px;cursor:pointer;font-weight:850}.example-body{padding:0 14px 14px;white-space:pre-line}.tag{display:inline-block;margin-right:6px;padding:1px 8px;border-radius:99px;background:#fff;color:var(--brand-dark);font-size:.78rem}.checks{display:grid;gap:8px;margin-top:22px;padding:15px;border-radius:14px;background:var(--green-soft)}.checks-title{color:var(--green);font-weight:850}.check{display:grid;grid-template-columns:27px 1fr;gap:9px;align-items:start;min-height:44px;padding:7px;border-radius:9px;cursor:pointer}.check:hover{background:rgba(255,255,255,.75)}input[type=checkbox],input[type=radio]{width:22px;height:22px;accent-color:var(--brand);cursor:pointer}.important{margin-top:18px;padding:13px 15px;border:1px solid #dfb65a;border-radius:12px;background:#fff8df;font-size:.93rem}.actions{display:flex;justify-content:space-between;gap:10px;margin-top:25px}.btn{min-height:48px;padding:10px 17px;border:1px solid var(--line);border-radius:11px;cursor:pointer;font-weight:850}.primary{border-color:var(--brand);background:var(--brand);color:#fff}.secondary{background:#fff;color:var(--ink)}.btn:hover,.btn:focus-visible{outline:none;box-shadow:0 0 0 4px rgba(229,103,63,.15)}.feedback{margin-top:10px;color:var(--brand-dark);font-weight:800}.closing{margin-top:22px;font-weight:800}.reset-zone{margin-top:25px;text-align:center}.reset{min-height:46px;padding:8px 16px;border:1px solid #c3cdd2;border-radius:10px;background:#fff;color:#6d3730;cursor:pointer}dialog{width:min(420px,calc(100% - 30px));padding:22px;border:0;border-radius:16px;box-shadow:0 24px 70px rgba(0,0,0,.28)}dialog::backdrop{background:rgba(27,33,36,.48)}.dialog-actions{display:flex;justify-content:flex-end;gap:10px;margin-top:18px}.danger{border-color:#b33d2f;background:#b33d2f;color:#fff}
+    @media(max-width:700px){.hero{padding-top:28px}.status{grid-template-columns:1fr;gap:5px}.track,.restore{grid-column:1}.stepper{grid-template-columns:1fr 1fr}.choice-grid,.grid2{grid-template-columns:1fr}.choice{min-height:0}.screen{padding:21px 16px}.actions,.dialog-actions{flex-direction:column-reverse}.btn{width:100%}}
+    @media print{.status-wrap,.stepper,.actions,.reset-zone,dialog{display:none!important}.screen{display:block!important;box-shadow:none;break-inside:avoid}body{background:#fff}}
+  </style>
+</head>
+<body>
+  <noscript><p class="shell">このガイドを操作するにはJavaScriptが必要です。</p></noscript>
+  <header class="hero shell">
+    <p class="eyebrow">応援で集客勉強会</p>
+    <h1>今日からできる！<br>実践アクションガイド</h1>
+    <p class="lead">イベントを応援したい人が、自分に合う集客方法を選び、今日から一つ行動できるようになるためのガイドです。すべての方法を実践する必要はありません。自分に合う方法を一つ選び、できることから始めてみましょう。</p>
+    <div class="notice"><strong>Web版について</strong><br>本文・例文・チェック項目は改訂テキストガイドに基づいています。画面移動、入力欄、自動保存はWeb版の補助機能です。</div>
+  </header>
+
+  <div class="status-wrap"><div class="shell status" aria-live="polite"><div class="progress"><span id="done">0</span> / 9 項目できました</div><div class="save" id="save">入力すると自動保存されます</div><div class="track"><div class="bar" id="bar"></div></div><div class="restore" id="restore">前回の内容を復元し、続きから再開しました。</div></div></div>
+
+  <main class="shell">
+    <div class="privacy"><strong>保存について：</strong>入力内容は運営へ送信されず、この端末・このブラウザ内だけに保存されます。同じURLを同じブラウザで開いた場合に再開できます。個人情報・機密情報は入力せず、名前は自分に分かる呼び名でも構いません。</div>
+    <div class="stepper" aria-label="進み具合"><div class="step-chip" data-chip="1">STEP 1<br>共通準備</div><div class="step-chip" data-chip="2">STEP 2<br>方法を選ぶ</div><div class="step-chip" data-chip="3">STEP 3<br>実践する</div><div class="step-chip" data-chip="4">STEP 4<br>振り返る</div></div>
+
+    <form id="guide" novalidate>
+      <section class="screen" id="step1" data-step="1">
+        <p class="kicker">STEP 1｜共通の準備</p><h2>イベントの魅力を一つ見つけよう</h2><p class="intro">まずは、紹介したいイベントの情報を確認しましょう。</p>
+        <div class="grid2"><div class="field"><label for="event-name">イベント名</label><input id="event-name" name="event_name" type="text"></div><div class="field"><label for="event-url">イベント詳細・申込みページ</label><input id="event-url" name="event_url" type="url" inputmode="url" placeholder="https://"></div></div>
+        <h3>次の3つを考えてみましょう</h3>
+        <div class="field"><label for="need">1. どんな人に役立ちそうですか？</label><textarea id="need" name="need"></textarea></div>
+        <div class="field"><label for="interest">2. どんなことに興味がある人に合いそうですか？</label><textarea id="interest" name="interest"></textarea></div>
+        <div class="field"><label for="benefit">3. 参加すると、どんな学びや気づきがありそうですか？</label><textarea id="benefit" name="benefit"></textarea></div>
+        <div class="field"><label for="appeal">私が伝えたいイベントの魅力（一言で）</label><textarea id="appeal" name="appeal"></textarea><span class="hint">イベントの内容や登壇者については、公式案内で確認できる情報を使いましょう。</span></div>
+        <div class="checks"><div class="checks-title">準備チェック</div><label class="check"><input type="checkbox" name="common_1"><span>イベント情報を確認した</span></label><label class="check"><input type="checkbox" name="common_2"><span>届けたい人をイメージした</span></label><label class="check"><input type="checkbox" name="common_3"><span>伝えたい魅力を一つ決めた</span></label></div>
+        <div class="actions"><span></span><button type="button" class="btn primary" data-go="2">STEP 2｜方法を選ぶ</button></div>
+      </section>
+
+      <section class="screen" id="step2" data-step="2">
+        <p class="kicker">STEP 2｜自分に合う応援方法を選ぼう</p><h2>四つの方法から、一番取り組みやすいものを一つ</h2><p class="intro">全部やる必要はありません。AとDは個別案内、Bは自分で発信、Cはほかの人へ応援をお願いする方法です。</p>
+        <div class="choice-grid">
+          <label class="choice"><input type="radio" name="selected_method" value="A"><span><strong>A｜友人・知人に直接声をかける</strong><em>思い浮かぶ知人へ直接伝えたい</em><span>「この人に合いそう！」と、知り合いの顔が浮かぶ人。相手に合いそうな理由を添えて、個別に紹介します。</span></span></label>
+          <label class="choice"><input type="radio" name="selected_method" value="B"><span><strong>B｜自分のSNSやコミュニティで紹介する</strong><em>自分の発信先で広く伝えたい</em><span>個別に誘うより、自分の発信を通じて情報を広めたい人。SNSや参加中のコミュニティで紹介します。</span></span></label>
+          <label class="choice"><input type="radio" name="selected_method" value="C"><span><strong>C｜応援投稿・シェアをお願いする</strong><em>協力してくれる人と一緒に広めたい</em><span>自分一人で広めるより、周りの人と協力して応援したい人。紹介や投稿のシェアをお願いします。</span></span></label>
+          <label class="choice"><input type="radio" name="selected_method" value="D"><span><strong>D｜登壇者やテーマに関心がある人へ案内する</strong><em>確認できる関心との接点から伝えたい</em><span>登壇者の活動やイベントのテーマに関心がありそうな知人がいる人。相手の関心に合わせて個別に案内します。</span></span></label>
+        </div>
+        <div class="selection-note field"><label for="choice-reason">この方法を選んだ理由（一言で・任意）</label><input id="choice-reason" name="choice_reason" type="text" placeholder="例：まずは一人に直接伝えられそう"></div>
+        <p class="feedback" id="choice-feedback" aria-live="polite"></p>
+        <div class="actions"><button type="button" class="btn secondary" data-go="1">STEP 1へ戻る</button><button type="button" class="btn primary" id="to-step3">選んだ方法で進む</button></div>
+      </section>
+
+      <section class="screen" id="step3" data-step="3">
+        <p class="kicker">STEP 3｜選んだ方法を実践しよう</p><h2 id="method-screen-title">実践ガイド</h2><p class="intro">選んだ方法の内容だけを表示しています。方法を変える場合はSTEP 2へ戻って選び直せます。</p>
+
+        <article class="method-panel" data-method="A">
+          <div class="method-head"><strong>A｜友人・知人に直接声をかける</strong>「この人に合いそう」と思う相手を一人選び、相手に合わせた言葉で案内します。</div>
+          <h3>① 紹介する相手を一人決める</h3><div class="field"><label for="a-name">お名前</label><input id="a-name" name="a_name" type="text"><span class="hint">自分に分かる呼び名でOK</span></div><div class="field"><label for="a-reason">その人に合いそうだと思う理由</label><textarea id="a-reason" name="a_reason"></textarea></div>
+          <h3>② メッセージを作る</h3><details class="example"><summary><span class="tag">原文</span>例文を見る</summary><div class="example-body">「〇〇さん、こんにちは！
+以前△△のお話をされていたので、こんなイベントが合いそうだなと思ってご連絡しました。
+［イベントの短い紹介文］
+もし興味があれば、こちらを見てみてくださいね。
+［イベント詳細ページ］」</div></details><div class="field"><label for="a-message">自分の言葉に直したメッセージ</label><textarea id="a-message" name="a_message"></textarea></div>
+          <h3>③ 一人に送ってみる</h3><div class="checks"><div class="checks-title">実践チェック</div><label class="check"><input type="checkbox" name="a_1"><span>紹介する相手を決めた</span></label><label class="check"><input type="checkbox" name="a_2"><span>相手に合う理由を添えた</span></label><label class="check"><input type="checkbox" name="a_3"><span>メッセージを送った</span></label></div><div class="important"><strong>大切にしたいこと：</strong>返信や参加を催促せず、相手の判断を尊重しましょう。</div>
+        </article>
+
+        <article class="method-panel" data-method="B">
+          <div class="method-head"><strong>B｜自分のSNSやコミュニティで紹介する</strong>自分が使っている発信先を一つ選び、確認できる内容を自分の言葉で伝えます。</div>
+          <h3>① 発信する場所を一つ選ぶ</h3><p>Instagram・FacebookなどのSNS／自分が参加しているコミュニティ／その他、普段使っている発信先</p><div class="field"><label for="b-place">発信する場所</label><input id="b-place" name="b_place" type="text"></div>
+          <h3>② 紹介文を作る</h3><details class="example"><summary><span class="tag">原文</span>例文を見る</summary><div class="example-body">「〇〇に興味がある方へ！
+こんなイベントがあります。
+［イベントの魅力や内容を一言で］
+気になる方は、ぜひ詳細をチェックしてみてください。
+［イベント詳細ページ］」</div></details><div class="field"><label for="b-message">自分の紹介文</label><textarea id="b-message" name="b_message"></textarea></div>
+          <h3>③ 投稿する</h3><p>コミュニティで紹介する場合は、投稿ルールを確認し、必要に応じて管理者に許可を取りましょう。</p><div class="checks"><div class="checks-title">実践チェック</div><label class="check"><input type="checkbox" name="b_1"><span>発信する場所を決めた</span></label><label class="check"><input type="checkbox" name="b_2"><span>紹介文を作った</span></label><label class="check"><input type="checkbox" name="b_3"><span>投稿・紹介した</span></label></div><div class="important"><strong>大切にしたいこと：</strong>イベントの内容を正確に伝え、発信先のルールを尊重しましょう。</div>
+        </article>
+
+        <article class="method-panel" data-method="C">
+          <div class="method-head"><strong>C｜応援投稿・シェアをお願いする</strong>協力してくれそうな人を一人選び、相手が紹介しやすい情報と一緒にお願いします。</div>
+          <h3>① 協力をお願いする相手を一人決める</h3><div class="field"><label for="c-name">お名前</label><input id="c-name" name="c_name" type="text"><span class="hint">自分に分かる呼び名でOK</span></div><div class="field"><label for="c-reason">その人にお願いしたい理由</label><textarea id="c-reason" name="c_reason"></textarea></div>
+          <h3>② 相手が紹介しやすい情報を用意する</h3><p>イベントの短い紹介文、イベント詳細・申込みページ、使用可能な公式告知画像や投稿を用意します。</p><div class="field"><label for="c-info">渡す紹介文・案内先のメモ</label><textarea id="c-info" name="c_info"></textarea></div>
+          <h3>③ お願いのメッセージを送る</h3><details class="example"><summary><span class="tag">原文</span>例文を見る</summary><div class="example-body">「〇〇さん、こんにちは！
+今、こんなイベントを応援しています。
+［イベントの短い紹介文］
+もし内容に共感していただけたら、興味がありそうな方へのご紹介や投稿のシェアをお願いできたらうれしいです。
+紹介文と案内ページもお送りしますね。
+もちろん、無理のない範囲で大丈夫です！」</div></details><div class="field"><label for="c-message">自分のお願い文</label><textarea id="c-message" name="c_message"></textarea></div>
+          <div class="checks"><div class="checks-title">実践チェック</div><label class="check"><input type="checkbox" name="c_1"><span>お願いする相手を決めた</span></label><label class="check"><input type="checkbox" name="c_2"><span>紹介に必要な情報を用意した</span></label><label class="check"><input type="checkbox" name="c_3"><span>応援をお願いした</span></label></div><div class="important"><strong>大切にしたいこと：</strong>協力するかどうかは相手の自由です。引き受けてもらえたら、感謝を伝えましょう。</div>
+        </article>
+
+        <article class="method-panel" data-method="D">
+          <div class="method-head"><strong>D｜登壇者やテーマに関心がある人へ案内する</strong>確認できる関心との接点を整理し、自分の立場で相手に合わせて案内します。</div>
+          <h3>① 関心がありそうな人を一人考える</h3><div class="field"><label for="d-name">お名前</label><input id="d-name" name="d_name" type="text"><span class="hint">自分に分かる呼び名でOK</span></div><div class="field"><label for="d-theme">関心がありそうな登壇者・テーマ</label><input id="d-theme" name="d_theme" type="text"></div><div class="field"><label for="d-reason">その人が興味を持ちそうな理由</label><textarea id="d-reason" name="d_reason"></textarea></div>
+          <h3>② 相手の関心に合わせた案内文を作る</h3><details class="example"><summary><span class="tag">原文</span>例文を見る</summary><div class="example-body">「〇〇さん、こんにちは！
+以前△△に興味があるとお話しされていたので、ご案内したいイベントがあります。
+今回は□□というテーマのお話があるそうです。
+もし興味があれば、詳細を見てみてくださいね。
+［イベント詳細ページ］」</div></details><div class="field"><label for="d-message">自分の案内文</label><textarea id="d-message" name="d_message"></textarea></div>
+          <h3>③ 一人に案内してみる</h3><div class="checks"><div class="checks-title">実践チェック</div><label class="check"><input type="checkbox" name="d_1"><span>関心がありそうな相手を考えた</span></label><label class="check"><input type="checkbox" name="d_2"><span>興味との接点を整理した</span></label><label class="check"><input type="checkbox" name="d_3"><span>相手に合わせて案内した</span></label></div><div class="important"><strong>大切にしたいこと：</strong>面識のない登壇者フォロワーへの突然のDMや大量送信は避けましょう。運営や登壇者の代理と誤解されないよう、自分の立場で案内します。</div>
+        </article>
+
+        <div class="actions"><button type="button" class="btn secondary" data-go="2">STEP 2へ戻る・方法を選び直す</button><button type="button" class="btn primary" data-go="4">STEP 4｜振り返りへ進む</button></div>
+      </section>
+
+      <section class="screen" id="step4" data-step="4">
+        <p class="kicker">STEP 4｜共通の振り返り</p><h2>今日の行動を振り返ろう</h2><p class="intro">どの応援方法を選んだ人も、ここで今日の行動を振り返りましょう。</p>
+        <h3>① 今日やったことを記録する</h3><div class="field"><label>選んだ方法</label><input id="selected-label" type="text" readonly></div><div class="field"><label for="action">今日やったこと</label><textarea id="action" name="action"></textarea></div><div class="field"><label for="response">相手の反応・気づいたこと</label><textarea id="response" name="response"></textarea></div>
+        <h3>② 応援してくれた人に感謝を伝える</h3><details class="example"><summary><span class="tag">原文</span>お礼の例文を見る</summary><div class="example-body">「〇〇さん、紹介してくださってありがとうございました！
+応援してもらえて、とてもうれしかったです。
+私にも何かお手伝いできることがあれば、ぜひ声をかけてくださいね！」</div></details><p>※協力してくれた人がいる場合に取り組みましょう。</p><div class="field"><label for="thanks">自分のお礼の文章</label><textarea id="thanks" name="thanks"></textarea></div>
+        <h3>③ 次の一歩を一つ決める</h3><div class="field"><label for="next">私が次にやってみたいこと</label><textarea id="next" name="next"></textarea></div>
+        <div class="checks"><div class="checks-title">振り返りチェック</div><label class="check"><input type="checkbox" name="reflect_1"><span>自分に合う方法で一つ行動した</span></label><label class="check"><input type="checkbox" name="reflect_2"><span>協力してくれた人に感謝を伝えた（該当する場合）</span></label><label class="check"><input type="checkbox" name="reflect_3"><span>次の一歩を決めた</span></label></div>
+        <p class="closing">一人で頑張って集客するのではなく、自分にできる方法で誰かに情報を届け、周りの人とも応援し合う。大切なのは、自分に合う方法を選び、今日できることを一つ実践することです。</p>
+        <div class="actions"><button type="button" class="btn secondary" id="back-to-method">STEP 3へ戻る</button><span></span></div>
+      </section>
+    </form>
+
+    <div class="reset-zone"><button type="button" class="reset" id="reset-open">入力内容をすべて消す</button></div>
+  </main>
+
+  <dialog id="reset-dialog" aria-labelledby="reset-title"><h2 id="reset-title">入力内容をすべて消しますか？</h2><p>この操作は元に戻せません。誤操作を防ぐため、もう一度確認しています。</p><div class="dialog-actions"><button type="button" class="btn secondary" id="reset-cancel">キャンセル</button><button type="button" class="btn danger" id="reset-confirm">すべて消す</button></div></dialog>
+
+  <script>
+    (()=>{
+      'use strict';
+      const KEY='ouen-shukyaku-worksheet:revised-v1', VERSION=1;
+      const form=document.getElementById('guide'), saveEl=document.getElementById('save'), doneEl=document.getElementById('done'), bar=document.getElementById('bar'), restoreEl=document.getElementById('restore'), feedback=document.getElementById('choice-feedback');
+      const methodNames={A:'A｜友人・知人に直接声をかける',B:'B｜自分のSNSやコミュニティで紹介する',C:'C｜応援投稿・シェアをお願いする',D:'D｜登壇者やテーマに関心がある人へ案内する'};
+      let timer=null, storageOK=true, currentStep=1;
+      const selected=()=>form.querySelector('input[name="selected_method"]:checked')?.value||'';
+      function values(){const out={};form.querySelectorAll('input,textarea').forEach(e=>{if(!e.name)return;if(e.type==='checkbox')out[e.name]=e.checked;else if(e.type==='radio'){if(e.checked)out[e.name]=e.value}else out[e.name]=e.value});return out}
+      function apply(v){form.querySelectorAll('input,textarea').forEach(e=>{if(!e.name||!(e.name in v))return;if(e.type==='checkbox')e.checked=!!v[e.name];else if(e.type==='radio')e.checked=v[e.name]===e.value;else e.value=String(v[e.name]??'')})}
+      function activeChecks(){const common=[...form.querySelectorAll('input[name^="common_"]')],reflect=[...form.querySelectorAll('input[name^="reflect_"]')],m=selected(),method=m?[...form.querySelectorAll(`input[name^="${m.toLowerCase()}_"]`)]:[];return [...common,...method,...reflect]}
+      function progress(){const c=activeChecks(),n=c.filter(x=>x.checked).length;doneEl.textContent=n;bar.style.width=`${(n/9)*100}%`}
+      function fmt(s){try{return new Intl.DateTimeFormat('ja-JP',{hour:'2-digit',minute:'2-digit'}).format(new Date(s))}catch{return''}}
+      function saveNow(){progress();if(!storageOK)return;const p={version:VERSION,updatedAt:new Date().toISOString(),currentStep,values:values()};try{localStorage.setItem(KEY,JSON.stringify(p));saveEl.textContent=`保存済み ${fmt(p.updatedAt)}`}catch{storageOK=false;saveEl.textContent='このブラウザでは保存できません';saveEl.style.color='#b33d2f'}}
+      function queue(){saveEl.textContent='保存中…';clearTimeout(timer);timer=setTimeout(saveNow,240)}
+      function showMethod(){const m=selected();document.querySelectorAll('.method-panel').forEach(p=>p.hidden=p.dataset.method!==m);document.getElementById('method-screen-title').textContent=m?methodNames[m]:'実践ガイド';document.getElementById('selected-label').value=m?methodNames[m]:'';progress()}
+      function showStep(step,push=true){currentStep=Math.max(1,Math.min(4,Number(step)||1));document.querySelectorAll('.screen').forEach(s=>s.classList.toggle('active',Number(s.dataset.step)===currentStep));document.querySelectorAll('.step-chip').forEach(c=>c.classList.toggle('active',Number(c.dataset.chip)===currentStep));if(currentStep===3&&!selected()){currentStep=2;return showStep(2,push)}showMethod();if(push)history.pushState({step:currentStep},'',`#step${currentStep}`);queue();window.scrollTo({top:document.querySelector('main').offsetTop,behavior:'smooth'})}
+      function restore(){try{const raw=localStorage.getItem(KEY);if(!raw){showStep(Number(location.hash.replace('#step',''))||1,false);saveEl.textContent='入力すると自動保存されます';return}const p=JSON.parse(raw);if(!p||p.version!==VERSION||typeof p.values!=='object')throw Error();apply(p.values);showMethod();const fromHash=Number(location.hash.replace('#step',''));showStep(fromHash||p.currentStep||1,false);saveEl.textContent=`保存済み ${fmt(p.updatedAt)}`;restoreEl.classList.add('show')}catch{saveEl.textContent='保存データを読み込めませんでした';saveEl.style.color='#b33d2f';showStep(1,false)}}
+      form.addEventListener('input',queue);form.addEventListener('change',e=>{if(e.target.name==='selected_method'){feedback.textContent=`${methodNames[e.target.value]}を選びました。`;showMethod()}queue()});window.addEventListener('pagehide',saveNow);
+      document.querySelectorAll('[data-go]').forEach(b=>b.addEventListener('click',()=>showStep(b.dataset.go)));
+      document.getElementById('to-step3').addEventListener('click',()=>{if(!selected()){feedback.textContent='A〜Dから、取り組む方法を一つ選んでください。';form.querySelector('input[name="selected_method"]').focus();return}feedback.textContent='';showStep(3)});
+      document.getElementById('back-to-method').addEventListener('click',()=>showStep(3));
+      window.addEventListener('popstate',e=>showStep(e.state?.step||Number(location.hash.replace('#step',''))||1,false));
+      const dialog=document.getElementById('reset-dialog');document.getElementById('reset-open').addEventListener('click',()=>dialog.showModal());document.getElementById('reset-cancel').addEventListener('click',()=>dialog.close());document.getElementById('reset-confirm').addEventListener('click',()=>{form.reset();localStorage.removeItem(KEY);restoreEl.classList.remove('show');feedback.textContent='';saveEl.style.color='';saveEl.textContent='入力内容を消しました';showMethod();showStep(1);dialog.close()});
+      restore();
+    })();
+  </script>
+</body>
+</html>
